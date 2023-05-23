@@ -1,6 +1,7 @@
 package api.auth.api.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,13 @@ public class CategoryService implements ICategoryService {
 	@Override
 	public List<CategoryDTO> findAll() {
 		return categoryMapper.toDto(categoryRepo.findAll());
+	}
+
+	@Override
+	public void remove(Long id) {
+		Optional<Category> produto = categoryRepo.findById(id);
+		if(produto.isPresent()) {
+			categoryRepo.delete(produto.get());
+		}
 	}
 }

@@ -43,8 +43,8 @@ public class UsuarioServiceImpl implements UserDetailsService {
         Usuario usuario = repository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado na base de dados."));
 
-        String[] roles = usuario.isAdmin() ?
-                new String[]{"ADMIN", "USER"} : new String[]{"USER"};
+        String[] roles = new String[]{usuario.getAdmin()};
+        
 
         return User
                 .builder()

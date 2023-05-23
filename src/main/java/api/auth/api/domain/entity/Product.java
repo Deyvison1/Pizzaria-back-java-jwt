@@ -29,16 +29,19 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
-	private BigDecimal price;
-	private String description;
-	private String banner;
+	@Column(name = "codigo_barra")
+	private String codigoBarra;
+	@Column(unique = true)
+	private String nome;
+	private String fabricante;
+	private BigDecimal valor;
+	private int quantidade;
 	@Column(name = "created_at", nullable = false, updatable = false)
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	@Column(name = "updated_at", nullable = true, updatable = true)
 	private LocalDateTime updatedAt;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Category category;
 	
 }
